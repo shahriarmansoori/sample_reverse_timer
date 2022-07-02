@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        div{
+            margin-left: 800px;
+            margin-right: 750px;
+            margin-top: 300px;
+            background-color: green;
+            
+        }
+    </style>
+    <script>
+    let minute = 1;
+    let second = 60;
+    let start_counter;
+       let start_reverse_counter = function(){ start_counter = setInterval(function(){
+        document.getElementById("start_button").disabled = true;
+        second--;
+        if(second == 0 && minute > 0){
+            second = 59;
+            minute--;
+        }
+        else if(second == 0 && minute == 0){
+            clearInterval(start_counter)
+        }
+        document.getElementById("counter").innerHTML = minute.toString() + ":" + second.toString();
+       },1000)
+    }
+       let stop_reverse_counter = () => {
+        document.getElementById("start_button").disabled = false;
+        clearInterval(start_counter)
+       }
+    </script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-color: yellow;">
+    <div>
+        <p style="padding-left: 25px;">reverse timer from 2 minute</p>
+    <h1 style="color: red; padding-left: 100px;" id="counter">2:00</h1>
+    <button type="button" onclick="start_reverse_counter()" id="start_button">start</button>
+    <button type="button" onclick="stop_reverse_counter()" style="margin-left: 195px;" id="stop_button">stop</button>
+    </div>
+</body>
+</html>
